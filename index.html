@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sejarah Indonesia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --merah: #CE1126;
+      --putih: #FFFFFF;
+      --krem:  #FDF6EC;
+      --emas:  #B8860B;
+      --gelap: #1C1008;
+      --abu:   #6B5B45;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      font-family: 'Source Serif 4', serif;
+      color: var(--gelap);
+      background: linear-gradient(to bottom, var(--merah) 50%, var(--putih) 50%);
+      background-attachment: fixed;
+    }
+
+    header {
+      text-align: center;
+      padding: 56px 20px 48px;
+    }
+    .flag-icon {
+      display: inline-flex;
+      flex-direction: column;
+      width: 64px;
+      height: 42px;
+      border-radius: 5px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0,0,0,.35);
+      margin-bottom: 22px;
+    }
+    .flag-icon .r { flex: 1; background: var(--merah); }
+    .flag-icon .w { flex: 1; background: #fff; }
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 6vw, 3.6rem);
+      font-weight: 900;
+      color: #fff;
+      text-shadow: 0 3px 16px rgba(0,0,0,.4);
+      letter-spacing: 1px;
+    }
+    header p {
+      margin-top: 12px;
+      font-style: italic;
+      color: rgba(255,255,255,.85);
+      font-size: 1rem;
+      text-shadow: 0 1px 6px rgba(0,0,0,.3);
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      background: rgba(28,16,8,.9);
+      backdrop-filter: blur(6px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 2px solid var(--emas);
+    }
+    nav a {
+      color: #f0e8d8;
+      text-decoration: none;
+      padding: 13px 22px;
+      font-size: .82rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      transition: color .2s, background .2s;
+    }
+    nav a:hover { background: var(--merah); color: #fff; }
+
+    .wrapper {
+      max-width: 820px;
+      margin: 32px auto 48px;
+      padding: 0 16px;
+    }
+
+    .card-section {
+      background: rgba(253,246,236,.95);
+      border-radius: 10px;
+      padding: 36px 36px 32px;
+      margin-bottom: 28px;
+      border-top: 5px solid var(--merah);
+      box-shadow: 0 8px 32px rgba(0,0,0,.12);
+      opacity: 0;
+      transform: translateY(20px);
+      animation: muncul .55s forwards;
+    }
+    .card-section:nth-child(1) { animation-delay: .1s; }
+    .card-section:nth-child(2) { animation-delay: .22s; }
+    .card-section:nth-child(3) { animation-delay: .34s; }
+    .card-section:nth-child(4) { animation-delay: .46s; }
+    .card-section:nth-child(5) { animation-delay: .58s; }
+
+    @keyframes muncul { to { opacity: 1; transform: translateY(0); } }
+
+    .label {
+      font-size: .7rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--emas);
+      margin-bottom: 6px;
+    }
+    .card-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.7rem;
+      color: var(--merah);
+      border-bottom: 2px solid #e8d8b0;
+      padding-bottom: 10px;
+      margin-bottom: 16px;
+    }
+    .card-section p {
+      line-height: 1.85;
+      color: #3A2D1A;
+      margin-bottom: 10px;
+      font-size: .97rem;
+    }
+
+    .timeline {
+      border-left: 3px solid var(--emas);
+      margin-left: 10px;
+      padding-left: 26px;
+      margin-top: 14px;
+    }
+    .tl-item { margin-bottom: 22px; position: relative; }
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: -34px; top: 5px;
+      width: 13px; height: 13px;
+      background: var(--merah);
+      border: 2px solid var(--emas);
+      border-radius: 50%;
+    }
+    .tl-item .tahun {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: var(--emas);
+      font-weight: 700;
+    }
+    .tl-item p { margin-top: 3px; font-size: .92rem; }
+
+    blockquote {
+      border-left: 4px solid var(--merah);
+      background: #fff7e6;
+      margin: 18px 0;
+      padding: 16px 20px;
+      font-style: italic;
+      font-size: 1.05rem;
+      line-height: 1.75;
+      border-radius: 0 6px 6px 0;
+    }
+    blockquote cite {
+      display: block;
+      margin-top: 8px;
+      font-style: normal;
+      font-size: .8rem;
+      color: var(--emas);
+    }
+
+    .tokoh-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 6px;
+    }
+    .tokoh {
+      background: #fff;
+      border: 1px solid #e0ceaa;
+      border-top: 4px solid var(--merah);
+      border-radius: 6px;
+      padding: 18px 16px;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .tokoh:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 28px rgba(0,0,0,.12);
+    }
+    .tokoh h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: var(--merah);
+      margin-bottom: 4px;
+    }
+    .tokoh .peran {
+      font-size: .72rem;
+      color: var(--emas);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .tokoh p { font-size: .87rem; color: var(--abu); line-height: 1.65; }
+
+    footer {
+      text-align: center;
+      padding: 26px;
+      background: rgba(28,16,8,.9);
+      color: #d4c4a0;
+      font-size: .83rem;
+      border-top: 2px solid var(--emas);
+    }
+    footer span { color: var(--merah); }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="flag-icon">
+    <div class="r"></div>
+    <div class="w"></div>
+  </div>
+  <h1>Sejarah Indonesia</h1>
+  <p>Perjalanan panjang sebuah bangsa dari Nusantara kuno hingga merdeka</p>
+</header>
+
+<nav>
+  <a href="#kerajaan">Kerajaan</a>
+  <a href="#penjajahan">Penjajahan</a>
+  <a href="#kemerdekaan">Kemerdekaan</a>
+  <a href="#tokoh">Tokoh</a>
+</nav>
+
+<div class="wrapper">
+
+  <div class="card-section">
+    <div class="label">Pengantar</div>
+    <h2>Nusantara yang Kaya</h2>
+    <p>Indonesia adalah salah satu negara dengan sejarah terpanjang dan terkaya di dunia. Kepulauan dengan lebih dari 17.000 pulau ini telah menjadi pusat perdagangan, kebudayaan, dan peradaban selama ribuan tahun.</p>
+    <p>Dari kerajaan maritim yang berjaya, masa penjajahan yang panjang, hingga perjuangan heroik merebut kemerdekaan — setiap babak mencerminkan ketangguhan bangsa Indonesia.</p>
+  </div>
+
+  <div class="card-section" id="kerajaan">
+    <div class="label">Abad ke-4 hingga 16</div>
+    <h2>Era Kerajaan Besar</h2>
+    <p>Nusantara pernah dipimpin oleh kerajaan-kerajaan besar yang disegani di seluruh Asia.</p>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tahun">~400 M — Kerajaan Kutai</div>
+        <p>Kerajaan Hindu tertua di Indonesia di Kalimantan Timur, dikenal dari prasasti Yupa dengan nama Raja Mulawarman.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tahun">683 M — Sriwijaya</div>
+        <p>Kerajaan maritim Buddhis di Sumatera yang menguasai jalur perdagangan Selat Malaka dan pusat pendidikan Buddha di Asia Tenggara.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tahun">1293 — Majapahit</div>
+        <p>Kerajaan terbesar di Nusantara. Di bawah Mahapatih Gajah Mada, Majapahit menyatukan kepulauan melalui Sumpah Palapa.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tahun">~1400 — Kesultanan Malaka</div>
+        <p>Pusat perdagangan dan penyebaran Islam di Asia Tenggara, memperkenalkan Islam ke seluruh kepulauan Nusantara.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-section" id="penjajahan">
+    <div class="label">Abad ke-16 hingga 20</div>
+    <h2>Masa Penjajahan</h2>
+    <p>Portugis tiba sekitar 1511, disusul Belanda yang mendirikan VOC pada 1602 dan menguasai hampir seluruh kepulauan Indonesia selama lebih dari 350 tahun.</p>
+    <p>Sistem tanam paksa (cultuurstelsel) 1830-an menyengsarakan rakyat, namun memicu kesadaran nasional dan gerakan perlawanan. Penjajahan Jepang (1942–1945) justru mempercepat persiapan kemerdekaan.</p>
+    <blockquote>
+      "Habis gelap terbitlah terang."
+      <cite>— R.A. Kartini</cite>
+    </blockquote>
+  </div>
+
+  <div class="card-section" id="kemerdekaan">
+    <div class="label">17 Agustus 1945</div>
+    <h2>Proklamasi Kemerdekaan</h2>
+    <p>Setelah Jepang menyerah kepada Sekutu pada 15 Agustus 1945, para pemuda mendesak Soekarno dan Hatta untuk segera memproklamasikan kemerdekaan.</p>
+    <p>Pukul 10.00 WIB, 17 Agustus 1945, di Jl. Pegangsaan Timur 56 Jakarta, Soekarno membacakan teks proklamasi — menandai lahirnya Republik Indonesia.</p>
+    <blockquote>
+      "Kami bangsa Indonesia dengan ini menyatakan kemerdekaan Indonesia..."
+      <cite>— Teks Proklamasi, 17 Agustus 1945</cite>
+    </blockquote>
+  </div>
+
+  <div class="card-section" id="tokoh">
+    <div class="label">Pahlawan Bangsa</div>
+    <h2>Tokoh Bersejarah</h2>
+    <div class="tokoh-grid">
+      <div class="tokoh">
+        <h3>Soekarno</h3>
+        <div class="peran">Presiden Pertama RI</div>
+        <p>Proklamator dan arsitek bangsa. Mempersatukan rakyat Indonesia dengan semangat nasionalisme.</p>
+      </div>
+      <div class="tokoh">
+        <h3>Mohammad Hatta</h3>
+        <div class="peran">Wakil Presiden Pertama</div>
+        <p>Negarawan dan ekonom. Bersama Soekarno menandatangani teks proklamasi kemerdekaan.</p>
+      </div>
+      <div class="tokoh">
+        <h3>R.A. Kartini</h3>
+        <div class="peran">Pelopor Emansipasi Wanita</div>
+        <p>Pejuang hak pendidikan perempuan. Surat-suratnya menginspirasi gerakan wanita Nusantara.</p>
+      </div>
+      <div class="tokoh">
+        <h3>Pangeran Diponegoro</h3>
+        <div class="peran">Pahlawan Perang Jawa</div>
+        <p>Memimpin Perang Jawa (1825–1830), salah satu perlawanan terbesar melawan penjajah Belanda.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>Dibuat dengan <span>❤</span> untuk mengenang perjuangan Bangsa Indonesia &nbsp;|&nbsp; © 2025</p>
+</footer>
+
+</body>
+</html>
